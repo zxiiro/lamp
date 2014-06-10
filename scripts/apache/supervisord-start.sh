@@ -19,7 +19,7 @@ MYSQL_PORT=${MYSQL_PORT:-3306}
 if [ "$MYSQL_HOST" != "127.0.0.1" ]
 then
     echo "Not initializing embedded MySQL due to user configuration"
-    echo "autostart=false" >> /etc/supervisor/conf.d/mysqld.conf
+    sed -i 's/^autostart=.*/autostart=false/' /etc/supervisor/conf.d/mysqld.conf
 fi
 
 exec /usr/sbin/service supervisor start
